@@ -12,6 +12,12 @@ This demo shows how to use LaunchDarkly in a serverless environment. The resourc
 
 1. Terraform is required. Make sure it's installed and accessible in your environment's path.
 1. AWS Credentials - AWS Console --> IAM --> Users --> Add User. Enter username (i.e. YOURNAME-api) and select programmatic access. This user will need administrator access.
+1. Once you have your access key and secret key, add them to your environment:
+
+```
+export AWS_ACCESS_KEY_ID="YOUR_ACCESS_KEY"
+export AWS_SECRET_ACCESS_KEY="YOUR_SECRET_KEY"
+```
 
 ### Running Terraform
 
