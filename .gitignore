@@ -133,4 +133,3 @@ dmypy.json
 *.tfvars
 .terraform*
 *.tfstate*
-*.zip

@@ -1,0 +1,6 @@
+aws_region        = "us-east-2"
+ld_sdk_key        = "YOUR-SDK-KEY-HERE"
+ld_access_token   = "YOUR-API-KEY-HERE"
+ld_project_key    = "YOUR-PROJECT-KEY-HERE"
+unique_identifier = "something-unique-to-you"
+owner             = "YOUR-EMAIL@launchdarkly.com"
