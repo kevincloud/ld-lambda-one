@@ -2,7 +2,11 @@
 
 ## What is this anyway?
 
-This demo shows how to use LaunchDarkly in a serverless environment. The resources include 2 Lambda functions, 1 DynamoDB table, an S3 static website, and the API Gateway. When the flag is off, the function increments a letter. When it's on, the function increments a number. Once configured, you can stand this demo up in about 30 seconds.
+This demo shows how to use LaunchDarkly in a serverless environment. The resources include 2 Lambda functions, 1 DynamoDB table, an S3 static website, and the API Gateway. When the flag is off, the function increments a letter. When it's on, the function increments a number.
+
+The flag is created in the project you specify, and it's titled "Update Right". That name will change in the near future, but it's a leftover name from the original thought process. :thinking:
+
+Once configured, you can stand this demo up in about 30 seconds.
 
 This demo is not likely to blow your socks off, but it's the technology we're showcasing along with the art of the possible.
 
