@@ -1,0 +1,19 @@
+resource "launchdarkly_feature_flag" "building_materials" {
+  project_key = var.ld_project_key
+  key         = "updateRight"
+  name        = "Update Right"
+
+  variation_type = "boolean"
+
+  variations {
+    value = "true"
+  }
+  variations {
+    value = "false"
+  }
+
+  defaults {
+    on_variation  = 0
+    off_variation = 1
+  }
+}
