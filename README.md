@@ -4,7 +4,7 @@
 
 This demo shows how to use LaunchDarkly in a serverless environment. The resources include 2 Lambda functions, 1 DynamoDB table, an S3 static website, and the API Gateway. When the flag is off, the function increments a letter. When it's on, the function increments a number. Once configured, you can stand this demo up in about 30 seconds.
 
-![Screenshot of Lambda Demo](https://myoctocat.com/assets/images/base-octocat.svg)
+![Screenshot of Lambda Demo](https://github.com/kevincloud/ld-lambda-one/blob/main/assets/screenshot.png)
 
 ### Setting up the demo
 
