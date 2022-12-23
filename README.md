@@ -17,6 +17,7 @@ This demo shows how to use LaunchDarkly in a serverless environment. The resourc
 1. Clone this repo into your local environment.
 1. Rename the `terraform.tfvars.example` file to `terraform.tfvars`.
 1. Edit the `terraform.tfvars` file and enter your own information for each variable. Variable descriptions are in the `variables.tf` file.
+1. Run the command `terraform init` to download all providers.
 1. Run the command `terraform apply --auto-approve`.
 1. When finished, you'll be provided a URL to your website. Plug it into your browser and start using the demo!
 1. When you're finished, PLEASE tear it down. It's very, very easy. Just run the command `terraform destroy --auto-approve`
