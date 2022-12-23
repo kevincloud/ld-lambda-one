@@ -133,3 +133,4 @@ dmypy.json
 *.tfvars
 .terraform*
 *.tfstate*
+.DS_Store
