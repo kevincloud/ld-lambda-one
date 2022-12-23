@@ -14,13 +14,17 @@ This demo shows how to use LaunchDarkly in a serverless environment. The resourc
 1. AWS Credentials - AWS Console --> IAM --> Users --> Add User. Enter username (i.e. YOURNAME-api) and select programmatic access. This user will need administrator access.
 
 ### Running Terraform
+
 1. Clone this repo into your local environment.
 1. Rename the `terraform.tfvars.example` file to `terraform.tfvars`.
 1. Edit the `terraform.tfvars` file and enter your own information for each variable. Variable descriptions are in the `variables.tf` file.
 1. Run the command `terraform init` to download all providers.
 1. Run the command `terraform apply --auto-approve`.
-1. When finished, you'll be provided a URL to your website. Plug it into your browser and start using the demo!
-1. When you're finished, PLEASE tear it down. It's very, very easy. Just run the command `terraform destroy --auto-approve`
+1. When terraform finished, you'll be given a URL to your website. Plug it into your browser and start using the demo!
+
+### Teardown
+
+When you're finished, PLEASE tear it down. It's very, very easy. Just run the command `terraform destroy --auto-approve`
 
 That's it! Everything is already wired up for you.
 
