@@ -17,6 +17,10 @@ variable "ld_project_key" {
 
 variable "unique_identifier" {
   description = "A unique identifier for naming resources to avoid name collisions"
+  validation {
+    condition     = can(regex("^[a-z]{6,10}$", var.unique_identifier))
+    error_message = "unique_identifier must be lower case letters only and 6 to 10 characters in length"
+  }
 }
 
 variable "owner" {
