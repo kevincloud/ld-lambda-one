@@ -1,7 +1,7 @@
 resource "launchdarkly_feature_flag" "building_materials" {
   project_key = var.ld_project_key
-  key         = "updateRight"
-  name        = "Update Right"
+  key         = "incNumber"
+  name        = "Increment Number"
 
   variation_type = "boolean"
 

@@ -78,7 +78,7 @@ def get_flag():
         }
     }
 
-    return ldclient.get().variation("updateRight", user_context, False)
+    return ldclient.get().variation("incNumber", user_context, False)
 
 
 def get_dbvalues():
