@@ -28,6 +28,13 @@
             transform: translate(-50%, -50%);
         }
 
+        #button2Div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 100%);
+        }
+
         .button {
             width: 150px;
             height: 60px;
@@ -63,7 +70,8 @@
 <body>
     <div id="numberDiv" class="boxstyle"></div>
     <div id="letterDiv" class="boxstyle"></div>
-    <div id="buttonDiv"><button class="button" onclick="bump();">Click me!</button></div>
+    <div id="buttonDiv"><button class="button" onclick="bump();">Click for LD!</button></div>
+    <div id="button2Div"><button class="button" onclick="bumpBasic();">Without LD</button></div>
 </body>
 
 </html>

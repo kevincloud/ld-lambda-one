@@ -68,7 +68,7 @@ resource "aws_s3_object" "jsfile_1" {
   content_type = "text/javascript"
 }
 
-resource "aws_s3_object" "jsfile_3" {
+resource "aws_s3_object" "jsfile_2" {
   bucket       = aws_s3_bucket.s3website.id
   key          = "vars.js"
   source       = "${path.module}/apps/webapp/vars.js"
@@ -82,6 +82,6 @@ resource "local_file" "variable_js" {
   content  = <<CONTENT
 apiIncrementer = "${aws_api_gateway_deployment.incrementer_deploy.invoke_url}";
 apiDBValues = "${aws_api_gateway_deployment.dbvalues_deploy.invoke_url}";
-
+apiIncrementNoLd = "${aws_api_gateway_deployment.incrementnold_deploy.invoke_url}"
 CONTENT
 }

@@ -1,3 +1,12 @@
+locals {
+  dbvalues_fname         = "${var.unique_identifier}_lambda_dbvalues"
+  dbvalues_loggroup      = "/aws/lambda/${local.dbvalues_fname}"
+  incrementer_fname      = "${var.unique_identifier}_lambda_incrementer"
+  incrementer_loggroup   = "/aws/lambda/${local.incrementer_fname}"
+  incrementnold_fname    = "${var.unique_identifier}_lambda_incrementnold"
+  incrementnold_loggroup = "/aws/lambda/${local.incrementnold_fname}"
+}
+
 terraform {
   required_providers {
     launchdarkly = {
