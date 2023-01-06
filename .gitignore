@@ -134,3 +134,7 @@ dmypy.json
 .terraform*
 *.tfstate*
 .DS_Store
+
+apps/incrementer/**
+!apps/incrementer/lambda_incrementer.zip
+!apps/incrementer/lambda_incrementer.py

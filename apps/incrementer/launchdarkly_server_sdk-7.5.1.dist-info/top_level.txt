@@ -1,2 +1,0 @@
-ldclient
-testing

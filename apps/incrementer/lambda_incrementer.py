@@ -100,6 +100,8 @@ def lambda_handler(event, context):
     else:
         inc_alpha()
 
+    ldclient.get().flush()
+
     return {
         'isBase64Encoded': False,
         'statusCode': 200,
