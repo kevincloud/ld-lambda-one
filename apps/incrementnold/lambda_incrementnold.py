@@ -32,6 +32,8 @@ def inc_number():
     item = ddb_table.get_item(Key={'SessionId': os.environ["SESSIONID"]})
     rec = item["Item"]
     num = int(rec["NumberItem"]) + 1
+    if num > 99:
+        num = 1
     ddb_table.update_item(
         Key={'SessionId': os.environ["SESSIONID"]},
         UpdateExpression="set NumberItem = :g",

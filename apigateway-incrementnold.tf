@@ -19,6 +19,7 @@ resource "aws_api_gateway_method" "incrementnold_options_method" {
   http_method   = "OPTIONS"
   authorization = "NONE"
 }
+
 resource "aws_api_gateway_method_response" "incrementnold_options_response" {
   rest_api_id = aws_api_gateway_rest_api.incrementnold_endpoint.id
   resource_id = aws_api_gateway_rest_api.incrementnold_endpoint.root_resource_id
@@ -51,7 +52,7 @@ resource "aws_api_gateway_integration_response" "incrementnold_options_int_respo
   http_method = aws_api_gateway_method.incrementnold_options_method.http_method
   status_code = aws_api_gateway_method_response.incrementnold_options_response.status_code
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+    "method.response.header.Access-Control-Allow-Headers" = "'*'",
     "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS,POST,PUT'",
     "method.response.header.Access-Control-Allow-Origin"  = "'*'"
   }

@@ -49,6 +49,10 @@
             cursor: pointer;
         }
 
+        .button:active {
+            box-shadow: 0px 0px 10px 5px rgba(255, 255, 0, 1.0);
+        }
+
         .boxstyle {
             font-size: 36em;
             font-size: 36vw;
@@ -70,7 +74,7 @@
 <body>
     <div id="numberDiv" class="boxstyle"></div>
     <div id="letterDiv" class="boxstyle"></div>
-    <div id="buttonDiv"><button class="button" onclick="bump();">Click for LD!</button></div>
+    <div id="buttonDiv"><button class="button" onclick="bump();">With LD Flag!</button></div>
     <div id="button2Div"><button class="button" onclick="bumpBasic();">Without LD</button></div>
 </body>
 

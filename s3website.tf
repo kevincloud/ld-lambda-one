@@ -82,6 +82,6 @@ resource "local_file" "variable_js" {
   content  = <<CONTENT
 apiIncrementer = "${aws_api_gateway_deployment.incrementer_deploy.invoke_url}";
 apiDBValues = "${aws_api_gateway_deployment.dbvalues_deploy.invoke_url}";
-apiIncrementNoLd = "${aws_api_gateway_deployment.incrementnold_deploy.invoke_url}"
+apiIncrementNoLd = "${aws_api_gateway_deployment.incrementnold_deploy.invoke_url};"
 CONTENT
 }

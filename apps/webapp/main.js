@@ -1,4 +1,6 @@
 function bump() {
+    var numberDiv = document.getElementById('numberDiv');
+    var letterDiv = document.getElementById('letterDiv');
     var xhr = new XMLHttpRequest();
     var url = apiIncrementer;
     xhr.open("POST", url, true);
@@ -13,9 +15,13 @@ function bump() {
 }
 
 function bumpBasic() {
+    var numberDiv = document.getElementById('numberDiv');
+    var letterDiv = document.getElementById('letterDiv');
     var xhr = new XMLHttpRequest();
     var url = apiIncrementNoLd;
     xhr.open("POST", url, true);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             res = JSON.parse(xhr.responseText);
@@ -28,8 +34,8 @@ function bumpBasic() {
 
 
 function getData() {
-    numberDiv = document.getElementById('numberDiv');
-    letterDiv = document.getElementById('letterDiv');
+    var numberDiv = document.getElementById('numberDiv');
+    var letterDiv = document.getElementById('letterDiv');
     var xhr = new XMLHttpRequest();
     var url = apiDBValues;
     xhr.open("POST", url, true);
