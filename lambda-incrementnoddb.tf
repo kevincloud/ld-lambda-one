@@ -1,0 +1,43 @@
+data "archive_file" "incrementnoddb_zip" {
+  type             = "zip"
+  source_dir       = "${path.module}/apps/incrementnoddb"
+  excludes         = ["${path.module}/apps/incrementnoddb/lambda_incrementnoddb.zip"]
+  output_file_mode = "0666"
+  output_path      = "${path.module}/apps/incrementnoddb/lambda_incrementnoddb.zip"
+}
+
+resource "aws_lambda_function" "lambda_incrementnoddb" {
+  # If the file is not in the current working directory you will need to include a
+  # path.module in the filename.
+  filename         = "${path.module}/apps/incrementnoddb/lambda_incrementnoddb.zip"
+  function_name    = local.incrementnoddb_fname
+  role             = aws_iam_role.lambda_iam_role.arn
+  handler          = "lambda_incrementnoddb.lambda_handler"
+  source_code_hash = data.archive_file.incrementnoddb_zip.output_base64sha256
+  runtime          = "python3.9"
+  environment {
+    variables = {
+      SESSIONID  = "${var.unique_identifier}-session-id"
+      LD_SDK_KEY = var.ld_sdk_key
+      DDB_TABLE  = aws_dynamodb_table.item_tracker.name
+      LOG_GROUP  = local.incrementnoddb_loggroup
+    }
+  }
+
+  depends_on = [
+    data.archive_file.incrementnoddb_zip
+  ]
+}
+
+resource "aws_cloudwatch_log_group" "lambda_log_incrementnoddb" {
+  name              = local.incrementnoddb_loggroup
+  retention_in_days = 1
+  lifecycle {
+    prevent_destroy = false
+  }
+}
+
+resource "aws_cloudwatch_log_stream" "lambda_logstream_incrementnoddb" {
+  name           = "ApplicationLogs"
+  log_group_name = aws_cloudwatch_log_group.lambda_log_incrementnoddb.name
+}

@@ -25,10 +25,17 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -200%);
         }
 
         #button2Div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #button3Div {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -36,7 +43,7 @@
         }
 
         .button {
-            width: 150px;
+            width: 175px;
             height: 60px;
             font-size: 24pt;
             border-radius: 15px;
@@ -72,10 +79,11 @@
 </head>
 
 <body>
-    <div id="numberDiv" class="boxstyle"></div>
-    <div id="letterDiv" class="boxstyle"></div>
+    <div id="numberDiv" class="boxstyle">1</div>
+    <div id="letterDiv" class="boxstyle">A</div>
     <div id="buttonDiv"><button class="button" onclick="bump();">With LD Flag!</button></div>
     <div id="button2Div"><button class="button" onclick="bumpBasic();">Without LD</button></div>
+    <div id="button3Div"><button class="button" onclick="bumpClean();">Without DB/LD</button></div>
 </body>
 
 </html>
