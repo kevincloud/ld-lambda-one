@@ -24,8 +24,9 @@ def get_dbvalues(nn, nc):
 
 
 def lambda_handler(event, context):
-    nn = inc_number(event['number'])
-    nc = inc_alpha(event['letter'])
+    params = json.loads(event['body'])
+    nn = inc_number(params['mynumber'])
+    nc = inc_alpha(params['myletter'])
 
     return {
         'isBase64Encoded': False,
