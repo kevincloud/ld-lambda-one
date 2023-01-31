@@ -38,10 +38,7 @@ function bumpClean() {
     var letterDiv = document.getElementById('letterDiv');
     var xhr = new XMLHttpRequest();
     var url = apiIncrementNoDdb;
-    var payload = {
-        "number": numberDiv.innerText,
-        "letter": letterDiv.innerText
-    }
+    var payload = "{\"mynumber\": \"" + numberDiv.innerText + "\",\"myletter\": \"" + letterDiv.innerText + "\"}"
     xhr.open("POST", url, true);
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
