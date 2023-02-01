@@ -25,6 +25,7 @@ function bumpLd() {
     var latencyDiv = document.getElementById('latency2Div');
     var xhr = new XMLHttpRequest();
     var url = apiIncrementLd;
+    var payload = "{\"mynumber\": \"" + numberDiv.innerText + "\",\"myletter\": \"" + letterDiv.innerText + "\"}"
     var start;
     xhr.open("POST", url, true);
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -39,7 +40,7 @@ function bumpLd() {
         }
     }
     start = window.performance.now();
-    xhr.send();
+    xhr.send(payload);
 }
 
 function bumpDb() {

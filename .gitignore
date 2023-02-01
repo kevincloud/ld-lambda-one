@@ -138,3 +138,6 @@ dmypy.json
 apps/incrementer/**
 !apps/incrementer/lambda_incrementer.zip
 !apps/incrementer/lambda_incrementer.py
+apps/incrementld/**
+!apps/incrementld/lambda_incrementld.zip
+!apps/incrementld/lambda_incrementld.py

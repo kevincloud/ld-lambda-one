@@ -3,6 +3,8 @@ locals {
   dbvalues_loggroup      = "/aws/lambda/${local.dbvalues_fname}"
   incrementer_fname      = "${var.unique_identifier}_lambda_incrementer"
   incrementer_loggroup   = "/aws/lambda/${local.incrementer_fname}"
+  incrementld_fname      = "${var.unique_identifier}_lambda_incrementld"
+  incrementld_loggroup   = "/aws/lambda/${local.incrementld_fname}"
   incrementdb_fname      = "${var.unique_identifier}_lambda_incrementdb"
   incrementdb_loggroup   = "/aws/lambda/${local.incrementdb_fname}"
   incrementnone_fname    = "${var.unique_identifier}_lambda_incrementnone"

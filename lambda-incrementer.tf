@@ -6,7 +6,7 @@ data "archive_file" "incrementer_zip" {
   output_path      = "${path.module}/apps/incrementer/lambda_incrementer.zip"
 
   depends_on = [
-    null_resource.ld_sdk_download
+    null_resource.ld_sdk_download_1
   ]
 }
 
