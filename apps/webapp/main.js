@@ -12,7 +12,7 @@ function bumpLdDb() {
             numberDiv.innerText = res.number;
             letterDiv.innerText = res.letter;
             latency = window.performance.now() - start;
-            latencyDiv.innerText = parseInt(latency);
+            latencyDiv.innerText = parseInt(latency).toString() + " ms";
         }
     }
     start = window.performance.now();
@@ -35,7 +35,7 @@ function bumpLd() {
             numberDiv.innerText = res.number;
             letterDiv.innerText = res.letter;
             latency = window.performance.now() - start;
-            latencyDiv.innerText = parseInt(latency);
+            latencyDiv.innerText = parseInt(latency).toString() + " ms";
         }
     }
     start = window.performance.now();
@@ -58,7 +58,7 @@ function bumpDb() {
             numberDiv.innerText = res.number;
             letterDiv.innerText = res.letter;
             latency = window.performance.now() - start;
-            latencyDiv.innerText = parseInt(latency);
+            latencyDiv.innerText = parseInt(latency).toString() + " ms";
         }
     }
     start = window.performance.now();
@@ -83,7 +83,7 @@ function bumpNone() {
             numberDiv.innerText = res.number;
             letterDiv.innerText = res.letter;
             latency = window.performance.now() - start;
-            latencyDiv.innerText = parseInt(latency);
+            latencyDiv.innerText = parseInt(latency).toString() + " ms";
         }
     }
     start = window.performance.now();
