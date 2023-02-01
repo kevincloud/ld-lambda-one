@@ -19,37 +19,53 @@
         body {
             padding: 0px;
             margin: 0px;
+            color: white;
+            font-size: 24px;
         }
 
         #buttonDiv {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -200%);
+            transform: translate(-50%, -250%);
         }
 
         #button2Div {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -125%);
         }
 
         #button3Div {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, 100%);
+            transform: translate(-50%, 0%);
+        }
+
+        #button4Div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 125%);
         }
 
         .button {
-            width: 175px;
+            color: black;
+            width: 200px;
             height: 60px;
             font-size: 24pt;
             border-radius: 15px;
             border-width: 0px;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
             background-color: rgb(224, 224, 224);
+        }
+
+        .latency {
+            width: 100%;
+            text-align: center;
+            padding-top: 10px;
         }
 
         .button:hover {
@@ -81,9 +97,18 @@
 <body>
     <div id="numberDiv" class="boxstyle">1</div>
     <div id="letterDiv" class="boxstyle">A</div>
-    <div id="buttonDiv"><button class="button" onclick="bump();">With LD Flag!</button></div>
-    <div id="button2Div"><button class="button" onclick="bumpBasic();">Without LD</button></div>
-    <div id="button3Div"><button class="button" onclick="bumpClean();">Without DB/LD</button></div>
+    <div id="buttonDiv"><button class="button" onclick="bumpLdDb();">LD Flag + DB</button>
+        <div id="latency1Div" class="latency">--- ms</div>
+    </div>
+    <div id="button2Div"><button class="button" onclick="bumpLd();">LD Flag Only</button>
+        <div id="latency2Div" class="latency">--- ms</div>
+    </div>
+    <div id="button3Div"><button class="button" onclick="bumpDb();">DB Only</button>
+        <div id="latency3Div" class="latency">--- ms</div>
+    </div>
+    <div id="button4Div"><button class="button" onclick="bumpNone();">No LD or DB</button>
+        <div id="latency4Div" class="latency">--- ms</div>
+    </div>
 </body>
 
 </html>

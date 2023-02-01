@@ -1,11 +1,11 @@
-resource "aws_api_gateway_rest_api" "incrementnold_endpoint" {
-  name        = "${var.unique_identifier}_IncrementNoLDEndPoint"
-  description = "Lambda IncrementNoLD Endpoint"
+resource "aws_api_gateway_rest_api" "incrementdb_endpoint" {
+  name        = "${var.unique_identifier}_IncrementDBEndPoint"
+  description = "Lambda IncrementDB Endpoint"
 }
 
-resource "aws_api_gateway_resource" "incrementnold_proxy_resource" {
-  rest_api_id = aws_api_gateway_rest_api.incrementnold_endpoint.id
-  parent_id   = aws_api_gateway_rest_api.incrementnold_endpoint.root_resource_id
+resource "aws_api_gateway_resource" "incrementdb_proxy_resource" {
+  rest_api_id = aws_api_gateway_rest_api.incrementdb_endpoint.id
+  parent_id   = aws_api_gateway_rest_api.incrementdb_endpoint.root_resource_id
   path_part   = "{proxy+}"
 }
 
@@ -13,17 +13,17 @@ resource "aws_api_gateway_resource" "incrementnold_proxy_resource" {
 /*             BEGIN CORS              */
 /***************************************/
 
-resource "aws_api_gateway_method" "incrementnold_options_method" {
-  rest_api_id   = aws_api_gateway_rest_api.incrementnold_endpoint.id
-  resource_id   = aws_api_gateway_rest_api.incrementnold_endpoint.root_resource_id
+resource "aws_api_gateway_method" "incrementdb_options_method" {
+  rest_api_id   = aws_api_gateway_rest_api.incrementdb_endpoint.id
+  resource_id   = aws_api_gateway_rest_api.incrementdb_endpoint.root_resource_id
   http_method   = "OPTIONS"
   authorization = "NONE"
 }
 
-resource "aws_api_gateway_method_response" "incrementnold_options_response" {
-  rest_api_id = aws_api_gateway_rest_api.incrementnold_endpoint.id
-  resource_id = aws_api_gateway_rest_api.incrementnold_endpoint.root_resource_id
-  http_method = aws_api_gateway_method.incrementnold_options_method.http_method
+resource "aws_api_gateway_method_response" "incrementdb_options_response" {
+  rest_api_id = aws_api_gateway_rest_api.incrementdb_endpoint.id
+  resource_id = aws_api_gateway_rest_api.incrementdb_endpoint.root_resource_id
+  http_method = aws_api_gateway_method.incrementdb_options_method.http_method
   status_code = 200
   response_models = {
     "application/json" = "Empty"
@@ -35,10 +35,10 @@ resource "aws_api_gateway_method_response" "incrementnold_options_response" {
   }
 }
 
-resource "aws_api_gateway_integration" "incrementnold_options_integration" {
-  rest_api_id      = aws_api_gateway_rest_api.incrementnold_endpoint.id
-  resource_id      = aws_api_gateway_rest_api.incrementnold_endpoint.root_resource_id
-  http_method      = aws_api_gateway_method.incrementnold_options_method.http_method
+resource "aws_api_gateway_integration" "incrementdb_options_integration" {
+  rest_api_id      = aws_api_gateway_rest_api.incrementdb_endpoint.id
+  resource_id      = aws_api_gateway_rest_api.incrementdb_endpoint.root_resource_id
+  http_method      = aws_api_gateway_method.incrementdb_options_method.http_method
   content_handling = "CONVERT_TO_TEXT"
   type             = "MOCK"
   request_templates = {
@@ -46,11 +46,11 @@ resource "aws_api_gateway_integration" "incrementnold_options_integration" {
   }
 }
 
-resource "aws_api_gateway_integration_response" "incrementnold_options_int_response" {
-  rest_api_id = aws_api_gateway_rest_api.incrementnold_endpoint.id
-  resource_id = aws_api_gateway_rest_api.incrementnold_endpoint.root_resource_id
-  http_method = aws_api_gateway_method.incrementnold_options_method.http_method
-  status_code = aws_api_gateway_method_response.incrementnold_options_response.status_code
+resource "aws_api_gateway_integration_response" "incrementdb_options_int_response" {
+  rest_api_id = aws_api_gateway_rest_api.incrementdb_endpoint.id
+  resource_id = aws_api_gateway_rest_api.incrementdb_endpoint.root_resource_id
+  http_method = aws_api_gateway_method.incrementdb_options_method.http_method
+  status_code = aws_api_gateway_method_response.incrementdb_options_response.status_code
   response_parameters = {
     "method.response.header.Access-Control-Allow-Headers" = "'*'",
     "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS,POST,PUT'",
@@ -63,67 +63,67 @@ resource "aws_api_gateway_integration_response" "incrementnold_options_int_respo
 /***************************************/
 
 
-resource "aws_api_gateway_method" "incrementnold_proxy_method" {
-  rest_api_id   = aws_api_gateway_rest_api.incrementnold_endpoint.id
-  resource_id   = aws_api_gateway_resource.incrementnold_proxy_resource.id
+resource "aws_api_gateway_method" "incrementdb_proxy_method" {
+  rest_api_id   = aws_api_gateway_rest_api.incrementdb_endpoint.id
+  resource_id   = aws_api_gateway_resource.incrementdb_proxy_resource.id
   http_method   = "POST"
   authorization = "NONE"
 }
 
-resource "aws_api_gateway_method_response" "incrementnold_proxy_method_resp" {
-  rest_api_id = aws_api_gateway_rest_api.incrementnold_endpoint.id
-  resource_id = aws_api_gateway_resource.incrementnold_proxy_resource.id
-  http_method = aws_api_gateway_method.incrementnold_proxy_method.http_method
+resource "aws_api_gateway_method_response" "incrementdb_proxy_method_resp" {
+  rest_api_id = aws_api_gateway_rest_api.incrementdb_endpoint.id
+  resource_id = aws_api_gateway_resource.incrementdb_proxy_resource.id
+  http_method = aws_api_gateway_method.incrementdb_proxy_method.http_method
   status_code = 200
   response_parameters = {
     "method.response.header.Access-Control-Allow-Origin" = true
   }
 }
 
-resource "aws_api_gateway_integration" "incrementnold_invoke" {
-  rest_api_id = aws_api_gateway_rest_api.incrementnold_endpoint.id
-  resource_id = aws_api_gateway_method.incrementnold_proxy_method.resource_id
-  http_method = aws_api_gateway_method.incrementnold_proxy_method.http_method
+resource "aws_api_gateway_integration" "incrementdb_invoke" {
+  rest_api_id = aws_api_gateway_rest_api.incrementdb_endpoint.id
+  resource_id = aws_api_gateway_method.incrementdb_proxy_method.resource_id
+  http_method = aws_api_gateway_method.incrementdb_proxy_method.http_method
 
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.lambda_incrementnold.invoke_arn
+  uri                     = aws_lambda_function.lambda_incrementdb.invoke_arn
 }
 
-resource "aws_api_gateway_method" "incrementnold_proxy_method_root" {
-  rest_api_id   = aws_api_gateway_rest_api.incrementnold_endpoint.id
-  resource_id   = aws_api_gateway_rest_api.incrementnold_endpoint.root_resource_id
+resource "aws_api_gateway_method" "incrementdb_proxy_method_root" {
+  rest_api_id   = aws_api_gateway_rest_api.incrementdb_endpoint.id
+  resource_id   = aws_api_gateway_rest_api.incrementdb_endpoint.root_resource_id
   http_method   = "POST"
   authorization = "NONE"
 }
 
-resource "aws_api_gateway_integration" "incrementnold_invoke_root" {
-  rest_api_id = aws_api_gateway_rest_api.incrementnold_endpoint.id
-  resource_id = aws_api_gateway_method.incrementnold_proxy_method_root.resource_id
-  http_method = aws_api_gateway_method.incrementnold_proxy_method_root.http_method
+resource "aws_api_gateway_integration" "incrementdb_invoke_root" {
+  rest_api_id = aws_api_gateway_rest_api.incrementdb_endpoint.id
+  resource_id = aws_api_gateway_method.incrementdb_proxy_method_root.resource_id
+  http_method = aws_api_gateway_method.incrementdb_proxy_method_root.http_method
 
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.lambda_incrementnold.invoke_arn
+  uri                     = aws_lambda_function.lambda_incrementdb.invoke_arn
 }
 
-resource "aws_api_gateway_deployment" "incrementnold_deploy" {
+resource "aws_api_gateway_deployment" "incrementdb_deploy" {
   depends_on = [
-    aws_api_gateway_integration.incrementnold_invoke,
-    aws_api_gateway_integration.incrementnold_invoke_root
+    aws_api_gateway_integration.incrementdb_invoke,
+    aws_api_gateway_integration.incrementdb_invoke_root
   ]
 
-  rest_api_id = aws_api_gateway_rest_api.incrementnold_endpoint.id
+  rest_api_id = aws_api_gateway_rest_api.incrementdb_endpoint.id
   stage_name  = "${var.unique_identifier}-test"
 }
 
-resource "aws_lambda_permission" "api_gateway_incrementnold_perms" {
+resource "aws_lambda_permission" "api_gateway_incrementdb_perms" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.lambda_incrementnold.function_name
+  function_name = aws_lambda_function.lambda_incrementdb.function_name
   principal     = "apigateway.amazonaws.com"
 
   # The /*/* portion grants access from any method on any resource
   # within the API Gateway "REST API".
-  source_arn = "${aws_api_gateway_rest_api.incrementnold_endpoint.execution_arn}/*/*"
+  source_arn = "${aws_api_gateway_rest_api.incrementdb_endpoint.execution_arn}/*/*"
 }

@@ -80,9 +80,10 @@ resource "aws_s3_object" "jsfile_2" {
 resource "local_file" "variable_js" {
   filename = "${path.module}/apps/webapp/vars.js"
   content  = <<CONTENT
-apiIncrementer = "${aws_api_gateway_deployment.incrementer_deploy.invoke_url}";
 apiDBValues = "${aws_api_gateway_deployment.dbvalues_deploy.invoke_url}";
-apiIncrementNoLd = "${aws_api_gateway_deployment.incrementnold_deploy.invoke_url}";
-apiIncrementNoDdb = "${aws_api_gateway_deployment.incrementnoddb_deploy.invoke_url}";
+apiIncrementer = "${aws_api_gateway_deployment.incrementer_deploy.invoke_url}";
+apiIncrementLd = "";
+apiIncrementDb = "${aws_api_gateway_deployment.incrementdb_deploy.invoke_url}";
+apiIncrementNone = "${aws_api_gateway_deployment.incrementnone_deploy.invoke_url}";
 CONTENT
 }
