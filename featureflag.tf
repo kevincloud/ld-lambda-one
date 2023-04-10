@@ -16,4 +16,8 @@ resource "launchdarkly_feature_flag" "building_materials" {
     on_variation  = 0
     off_variation = 1
   }
+
+  tags = {
+    lifecycle = "terraform"
+  }
 }
