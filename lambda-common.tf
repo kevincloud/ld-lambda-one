@@ -1,5 +1,5 @@
 resource "aws_iam_role" "lambda_iam_role" {
-  name = "${var.unique_identifier}_iam_for_lambda"
+  name = "${var.unique_identifier}-iam-for-lambda"
 
   assume_role_policy = jsonencode({
     "Version" : "2012-10-17",
@@ -33,7 +33,7 @@ data "aws_iam_policy_document" "lambda_access_policy" {
 }
 
 resource "aws_iam_policy" "lambda_logging_policy" {
-  name = "lambda-logging-policy"
+  name = "${var.unique_identifier}-lambda-logging-policy"
   policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
