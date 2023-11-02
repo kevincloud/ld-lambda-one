@@ -1,4 +1,4 @@
-resource "launchdarkly_feature_flag" "building_materials" {
+resource "launchdarkly_feature_flag" "increment_flag" {
   project_key = var.ld_project_key
   key         = "incNumber"
   name        = "Increment Number"
@@ -17,7 +17,5 @@ resource "launchdarkly_feature_flag" "building_materials" {
     off_variation = 1
   }
 
-  tags = {
-    lifecycle = "terraform"
-  }
+  tags = ["terraform"]
 }

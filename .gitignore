@@ -142,3 +142,9 @@ apps/incrementer/**
 apps/incrementld/**
 !apps/incrementld/lambda_incrementld.zip
 !apps/incrementld/lambda_incrementld.py
+apps/incrementdb/**
+!apps/incrementdb/lambda_incrementdb.zip
+!apps/incrementdb/lambda_incrementdb.py
+apps/incrementnone/**
+!apps/incrementnone/lambda_incrementnone.zip
+!apps/incrementnone/lambda_incrementnone.py
