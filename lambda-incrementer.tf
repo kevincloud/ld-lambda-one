@@ -33,6 +33,22 @@ resource "aws_lambda_function" "lambda_incrementer" {
   ]
 }
 
+resource "aws_lambda_function_url" "lambda_incrementer_url" {
+  function_name      = aws_lambda_function.lambda_incrementer.arn
+  authorization_type = "NONE"
+
+  cors {
+    allow_credentials = false
+    allow_origins     = ["*"]
+    allow_methods     = ["POST", "GET"]
+    allow_headers     = ["*"]
+    expose_headers    = ["keep-alive", "date"]
+    max_age           = 86400
+  }
+
+  depends_on = [aws_lambda_function.lambda_incrementer]
+}
+
 resource "aws_cloudwatch_log_group" "lambda_log_incrementer" {
   name              = local.incrementer_loggroup
   retention_in_days = 1

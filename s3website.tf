@@ -37,14 +37,14 @@ resource "aws_s3_bucket_website_configuration" "s3website_config" {
   }
 }
 
-resource "aws_s3_bucket_cors_configuration" "s3website_cors" {
-  bucket = aws_s3_bucket.s3website.id
+# resource "aws_s3_bucket_cors_configuration" "s3website_cors" {
+#   bucket = aws_s3_bucket.s3website.id
 
-  cors_rule {
-    allowed_methods = ["GET"]
-    allowed_origins = ["*"]
-  }
-}
+#   cors_rule {
+#     allowed_methods = ["GET"]
+#     allowed_origins = ["*"]
+#   }
+# }
 
 resource "aws_s3_bucket_policy" "s3website_policy" {
   bucket     = aws_s3_bucket.s3website.id
@@ -99,10 +99,10 @@ resource "aws_s3_object" "jsfile_2" {
 resource "local_file" "variable_js" {
   filename = "${path.module}/apps/webapp/vars.js"
   content  = <<CONTENT
-apiDBValues = "${aws_api_gateway_deployment.dbvalues_deploy.invoke_url}";
-apiIncrementer = "${aws_api_gateway_deployment.incrementer_deploy.invoke_url}";
-apiIncrementLd = "${aws_api_gateway_deployment.incrementld_deploy.invoke_url}";
-apiIncrementDb = "${aws_api_gateway_deployment.incrementdb_deploy.invoke_url}";
-apiIncrementNone = "${aws_api_gateway_deployment.incrementnone_deploy.invoke_url}";
+apiDBValues = "${aws_lambda_function_url.lambda_dbvalues_url.function_url}";
+apiIncrementer = "${aws_lambda_function_url.lambda_incrementer_url.function_url}";
+apiIncrementLd = "${aws_lambda_function_url.lambda_incrementld_url.function_url}";
+apiIncrementDb = "${aws_lambda_function_url.lambda_incrementdb_url.function_url}";
+apiIncrementNone = "${aws_lambda_function_url.lambda_incrementnone_url.function_url}";
 CONTENT
 }

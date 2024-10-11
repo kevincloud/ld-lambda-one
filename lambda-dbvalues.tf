@@ -26,6 +26,24 @@ resource "aws_lambda_function" "lambda_dbvalues" {
   depends_on = [data.archive_file.dbvalues_zip]
 }
 
+resource "aws_lambda_function_url" "lambda_dbvalues_url" {
+  function_name      = aws_lambda_function.lambda_dbvalues.arn
+  authorization_type = "NONE"
+
+  cors {
+    allow_credentials = false
+    allow_origins     = ["*"]
+    allow_methods     = ["POST", "GET"]
+    allow_headers     = ["*"]
+    expose_headers    = ["keep-alive", "date"]
+    max_age           = 86400
+  }
+
+  depends_on = [aws_lambda_function.lambda_dbvalues]
+}
+
+
+
 resource "aws_cloudwatch_log_group" "lambda_log_dbvalues" {
   name              = local.dbvalues_loggroup
   retention_in_days = 1

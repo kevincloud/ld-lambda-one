@@ -28,8 +28,6 @@ function bumpLd() {
     var payload = "{\"mynumber\": \"" + numberDiv.innerText + "\",\"myletter\": \"" + letterDiv.innerText + "\"}"
     var start;
     xhr.open("POST", url, true);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             res = JSON.parse(xhr.responseText);
@@ -51,8 +49,6 @@ function bumpDb() {
     var url = apiIncrementDb;
     var start;
     xhr.open("POST", url, true);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             res = JSON.parse(xhr.responseText);
@@ -76,8 +72,6 @@ function bumpNone() {
     var payload = "{\"mynumber\": \"" + numberDiv.innerText + "\",\"myletter\": \"" + letterDiv.innerText + "\"}"
     var start;
     xhr.open("POST", url, true);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             res = JSON.parse(xhr.responseText);

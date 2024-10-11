@@ -29,6 +29,22 @@ resource "aws_lambda_function" "lambda_incrementnone" {
   ]
 }
 
+resource "aws_lambda_function_url" "lambda_incrementnone_url" {
+  function_name      = aws_lambda_function.lambda_incrementnone.arn
+  authorization_type = "NONE"
+
+  cors {
+    allow_credentials = false
+    allow_origins     = ["*"]
+    allow_methods     = ["POST", "GET"]
+    allow_headers     = ["*"]
+    expose_headers    = ["keep-alive", "date"]
+    max_age           = 86400
+  }
+
+  depends_on = [aws_lambda_function.lambda_incrementnone]
+}
+
 resource "aws_cloudwatch_log_group" "lambda_log_incrementnone" {
   name              = local.incrementnone_loggroup
   retention_in_days = 1

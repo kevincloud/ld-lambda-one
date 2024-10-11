@@ -6,16 +6,19 @@ import time
 import boto3
 import ldclient
 from ldclient.config import Config
+from ldclient import Context
 
 
-logs = boto3.client('logs')
+logs = boto3.client("logs")
 
-ldclient.set_config(Config(os.environ['LD_SDK_KEY']))
+ldclient.set_config(Config(os.environ["LD_SDK_KEY"]))
 
 if ldclient.get().is_initialized():
     print("SDK successfully initialized!")
 else:
     print("SDK failed to initialize")
+
+client = ldclient.get()
 
 
 def shut_down(signum, frame):
@@ -34,8 +37,8 @@ signal.signal(signal.SIGTERM, shut_down)
 
 
 def cwlog(message):
-    LOG_GROUP = os.environ['LOG_GROUP']
-    LOG_STREAM = 'ApplicationLogs'
+    LOG_GROUP = os.environ["LOG_GROUP"]
+    LOG_STREAM = "ApplicationLogs"
     global logs
     timestamp = int(round(time.time() * 1000))
 
@@ -44,10 +47,10 @@ def cwlog(message):
         logStreamName=LOG_STREAM,
         logEvents=[
             {
-                'timestamp': timestamp,
-                'message': time.strftime('%Y-%m-%d %H:%M:%S')+'\t'+message
+                "timestamp": timestamp,
+                "message": time.strftime("%Y-%m-%d %H:%M:%S") + "\t" + message,
             }
-        ]
+        ],
     )
 
 
@@ -63,34 +66,27 @@ def inc_alpha(myletter):
     alpha = myletter
     nextc = chr(ord(alpha) + 1)
     if ord(nextc) > 90:
-        nextc = 'A'
+        nextc = "A"
     cwlog("AlphaItem updated in DOM")
     return nextc
 
 
 def get_flag():
-    user_context = {
-        "key": os.environ["SESSIONID"],
-        "custom": {
-            "user-type": "beta",
-            "location": "GA"
-        }
-    }
+    global client
 
-    return ldclient.get().variation("incNumber", user_context, False)
+    context = Context.builder(os.environ["SESSIONID"]).name("Sandy").build()
+
+    return client.variation("incNumber", context, False)
 
 
 def get_dbvalues(nn, nc):
-    return json.dumps({
-        'number': int(nn),
-        'letter': str(nc)
-    })
+    return json.dumps({"number": int(nn), "letter": str(nc)})
 
 
 def lambda_handler(event, context):
-    params = json.loads(event['body'])
-    nn = int(params['mynumber'])
-    nc = params['myletter']
+    params = json.loads(event["body"])
+    nn = int(params["mynumber"])
+    nc = params["myletter"]
     cwlog("Retrieve the flag")
     update_number = get_flag()
     cwlog("Flag was retrieved")
@@ -102,13 +98,4 @@ def lambda_handler(event, context):
 
     ldclient.get().flush()
 
-    return {
-        'isBase64Encoded': False,
-        'statusCode': 200,
-        'headers': {
-            'Access-Control-Allow-Headers': '*',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'OPTIONS,GET,POST'
-        },
-        'body': get_dbvalues(nn, nc)
-    }
+    return {"isBase64Encoded": False, "statusCode": 200, "body": get_dbvalues(nn, nc)}
